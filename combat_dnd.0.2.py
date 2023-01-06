@@ -250,9 +250,9 @@ def combat(initiative, verbose):
                   sont pas prises en charge")
         if len(equipe_defenseur) > 0:
             for i in range(attaquant.nombre_attaques):
-                # attaque(attaquant, equipe_defenseur[1], verbose)
+                # attaque(attaquant, equipe_defenseur[1], verbose) 
                 print(equipe_defenseur[1].nom)
-                i = i+1
+                i = i+1 
             
                 
 
