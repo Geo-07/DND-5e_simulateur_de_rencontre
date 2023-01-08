@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Ce programme sert à :
+Ce programme sert Ã  :
 =====================
-    Ce programme sert à simuler une renconrte dans Donjons & Dragons 5e.
+    Ce programme sert Ã  simuler une renconrte dans Donjons & Dragons 5e.
 
 Usage:
 ======
-    Mettre ici la commande à rentrer avec ses éventuels arguments
+    Mettre ici la commande Ã  rentrer avec ses Ã©ventuels arguments
 
         argument1: un entier signifiant un truc
-        argument2: une chaîne de caractères signifiant un autre truc
+        argument2: une chaÃ®ne de caractÃ¨res signifiant un autre truc
         
         
 Created on : Sun Jan  1 10:04:20 2023
@@ -36,9 +36,9 @@ aventuriers_combatants = []
 
 
 class Combatant:
-    """Cette classe crée un combattant avec tous ses attributs.
-    Elle gère l'attaque et la défense de chaque combattant et enregistre son 
-    état actuel (pv ko, jds contre la mort, stabilisé et mort).
+    """Cette classe crÃ©e un combattant avec tous ses attributs.
+    Elle gÃ¨re l'attaque et la dÃ©fense de chaque combattant et enregistre son 
+    Ã©tat actuel (pv ko, jds contre la mort, stabilisÃ© et mort).
     """
     
     def __init__(self,
@@ -87,36 +87,36 @@ class Combatant:
         self.valeur_des_degats = 1
         
 
-# Fonction création de combatant    
+# Fonction crÃ©ation de combatant    
 def import_combatants(fichier, verbose):
     """
-Cette fonction a pour rôle de lire un fichier JSON recensant les combatants et
-de créer un objet Combatant pour chacun d'entre-eux. Elle est capable de
-retourner la liste des combatants dans la console grâce au mode verbose.
+Cette fonction a pour rÃ´le de lire un fichier JSON recensant les combatants et
+de crÃ©er un objet Combatant pour chacun d'entre-eux. Elle est capable de
+retourner la liste des combatants dans la console grÃ¢ce au mode verbose.
 
     Parameters
     ----------
     fichier : Texte
         Nom du fichier au format JSON contenant le liste des combatant
-        si réglé à "default", prend "combatants.json" comme nom de fichier
+        si rÃ©glÃ© Ã  "default", prend "combatants.json" comme nom de fichier
     verbose : Boolean (True or False)
-        Imprime dans la console la liste des combattants créés et leurs 
-        équipes respectives.
+        Imprime dans la console la liste des combattants crÃ©Ã©s et leurs 
+        Ã©quipes respectives.
 
     Returns
     -------
     Sortie : List
-        Retourne la liste des objets Combatants créés en sortie.
+        Retourne la liste des objets Combatants crÃ©Ã©s en sortie.
 
     """
     combatants = []
     if fichier == "default":
         fichier = "combatants.json"
-        print(f"Le fichier par défaut est réglé sur {fichier}")
+        print(f"Le fichier par dÃ©faut est rÃ©glÃ© sur {fichier}")
     elif not fichier:
         fichier = "combatants.json"
-        print("Le fichier n'a pas été renseigné !")
-        print(f"{fichier} a été utilisé par défaut")
+        print("Le fichier n'a pas Ã©tÃ© renseignÃ© !")
+        print(f"{fichier} a Ã©tÃ© utilisÃ© par dÃ©faut")
     with open(fichier, "r") as f:
         donnees = json.load(f)
     for d in donnees:
@@ -136,13 +136,13 @@ retourner la liste des combatants dans la console grâce au mode verbose.
         combatants.append(c)
     if verbose:
         for c in combatants:
-            print(f"{c.nom} de l'équipe {c.equipe} est prêt(e) au combat")
+            print(f"{c.nom} de l'Ã©quipe {c.equipe} est prÃªt(e) au combat")
     return combatants
 
 def calcul_initiative(liste,verbose):
     """
 Cette fonction calcule l'initiative pour chaque combatant de la liste en
-paramètre, puis les classe par ordre décroissant d'initiative pour leur
+paramÃ¨tre, puis les classe par ordre dÃ©croissant d'initiative pour leur
 affecter leur rang de combatant.
 
     Parameters
@@ -155,7 +155,7 @@ affecter leur rang de combatant.
     Returns
     -------
     Sortie : List
-        Liste d'objets combatants_tries triés par rang d'initiative croissant
+        Liste d'objets combatants_tries triÃ©s par rang d'initiative croissant
 
     """
     for obj in liste:
@@ -171,14 +171,14 @@ affecter leur rang de combatant.
     if verbose:
         for obj in combatants_tries:
             print(f"{obj.nom} : initiative {obj.initiative} rang\
- {obj.rang_initiative} équipe : {obj.equipe}")
+ {obj.rang_initiative} Ã©quipe : {obj.equipe}")
     for combatant in combatants_tries:
         if combatant.equipe == "Aventuriers": #A reprendre !!!!!
             aventuriers_combatants.append(combatant)
         elif combatant.equipe == "Ennemis":
             ennemis_combatants.append(combatant)
         else:
-            print("Les équipes sont mal définies ou les options choisies ne \
+            print("Les Ã©quipes sont mal dÃ©finies ou les options choisies ne \
                   sont pas prises en charge") 
     print("Liste des ennemis :")
     for comb in ennemis_combatants:
@@ -191,20 +191,20 @@ affecter leur rang de combatant.
 
 def attaque(attaquant, defenseur, verbose):
     """
-    Cette fonction permet de gérer les attaques en combat et de mettre à jour
-    les objets relatifs au défenseur si ce dernier encaisse des dégâts.
-    Si un combatant est tué, on met également à jour les listes :
-        ko (en l'intégrant dedans)
-        ennemis_combatants ou aventuriers_combatants (en l'enlevant de là)
+    Cette fonction permet de gÃ©rer les attaques en combat et de mettre Ã  jour
+    les objets relatifs au dÃ©fenseur si ce dernier encaisse des dÃ©gÃ¢ts.
+    Si un combatant est tuÃ©, on met Ã©galement Ã  jour les listes :
+        ko (en l'intÃ©grant dedans)
+        ennemis_combatants ou aventuriers_combatants (en l'enlevant de lÃ )
 
     Parameters
     ----------
     attaquant : Objet
         Objet attaquant.
     defenseur : Objet
-        Objet défenseur.
+        Objet dÃ©fenseur.
     verbose : Boolean
-        Veut-on un retour écrit dans la console des évènements ?
+        Veut-on un retour Ã©crit dans la console des Ã©vÃ¨nements ?
 
     Returns
     -------
@@ -221,8 +221,8 @@ def attaque(attaquant, defenseur, verbose):
         defenseur.pv = defenseur.pv - degats
         defenseur.touche = True
         if verbose:
-            print(f"{attaquant.nom} inflige {degats} points de dégats \
-à {defenseur.nom} à qui il reste {defenseur.pv} PV")
+            print(f"{attaquant.nom} inflige {degats} points de dÃ©gats \
+Ã  {defenseur.nom} Ã  qui il reste {defenseur.pv} PV")
     else:
         if verbose:
             print(f"{attaquant.nom} rate son attaque contre {defenseur.nom}")
@@ -240,13 +240,13 @@ def attaque(attaquant, defenseur, verbose):
        
 def combat(initiative, verbose):
     for attaquant in initiative: #Objet attaquant selon rang d'initiative
-        #On détermine l'équipe du défenseur
+        #On dÃ©termine l'Ã©quipe du dÃ©fenseur
         if attaquant.equipe == "Aventuriers": #A reprendre !!!!!
             equipe_defenseur = ennemis_combatants
         if attaquant.equipe == "Ennemis":
             equipe_defenseur = aventuriers_combatants
         else:
-            print("Les équipes sont mal définies ou les options choisies ne \
+            print("Les Ã©quipes sont mal dÃ©finies ou les options choisies ne \
                   sont pas prises en charge")
         if len(equipe_defenseur) > 0:
             for i in range(attaquant.nombre_attaques):
