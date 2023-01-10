@@ -43,7 +43,7 @@ class Fighter:
         self.valeur_des_degats = valeur_des_degats
         self.jdsmort = 0
         self.jdsvie = 0
-        self.satus = Status.ALIVE
+        self.status = Status.ALIVE
 
     def declare_ready_for_fight(self):
         """annonce un nouveau combattant prêt à se battre"""
@@ -69,4 +69,48 @@ class Fighter:
             self.status = Status.STABLE
 
     def calculate_initiative(self):
+        """calcule l'initiative de chaque personnage"""
         self.initiative = dice.roll("1d20t") + self.bonus_initiative
+
+    def attack(self, opponent, verbosity):
+        """simule l'attaque contre un opposant donné. la verbosité
+
+        Args:
+            opponent (Fighter): the opponent that will defend the attack
+            verbosity (int): the bigger it is, the most the fight is described.
+        """
+        # côté attaquant:
+        # détermine si l'attaque va toucher
+        pour_toucher = dice.roll("1d20t") + self.pour_toucher
+        # calcul des dégats
+        degats = (
+            dice.roll(f"{self.nombre_des_degats}d{self.valeur_des_degats}t")
+            + self.bonus_degats
+        )
+
+        # côté défenseur
+        if opponent.classe_armure <= pour_toucher:
+            opponent.points_vie -= degats
+            touche = True
+        else:
+            touche = False
+
+        if opponent.points_vie <= 0:
+            opponent.status = Status.KO
+
+        if verbosity >= 1:
+            self.print_attack_summary(opponent, pour_toucher, degats, touche)
+
+    def print_attack_summary(self, opponent, pour_toucher, degats, touche):
+        """prints a summary of a given attack"""
+        print(
+            f"\npour toucher: {pour_toucher}, dégats: {degats}, ca: {opponent.classe_armure}"
+        )
+        if touche:
+            print(
+                f"{self.nom} inflige {degats} points de dégats à {opponent.nom} à qui il reste {opponent.points_vie}PV"
+            )
+        else:
+            print(f"{self.nom} rate son attaque contre {opponent.nom}")
+        if opponent.status == Status.KO:
+            print(f"{self.nom} met KO {opponent.nom}")

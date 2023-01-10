@@ -21,7 +21,6 @@ class FighterParser:
             verbosity (_type_): verbosité souhaitée
         """
         self.filename = filename
-        print(f"le fichier {self.filename} sera utilisé pour importer les combattants")
         self.verbosity = verbosity
         self.fighters = []
 
