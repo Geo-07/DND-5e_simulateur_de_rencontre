@@ -11,7 +11,7 @@ class Status(Enum):
     STABLE = (4, "stabilisé")
 
 
-class Combattant:
+class Fighter:
     "a standard fighter"
 
     def __init__(

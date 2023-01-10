@@ -9,9 +9,11 @@ if __name__ == "__main__":
     # on lit le fichier json des combattants
     fighter_parser = FighterParser(filename="combatants.json", verbosity=0)
     fighter_parser.read_fighters_from_file()
-    combatants = fighter_parser.fighters
+    fighters = fighter_parser.fighters
 
     # on crée l'objet de combat, et on l'initialise
-    fight_manager = Fight(combatants)
+    fight_manager = Fight(fighters)
     fight_manager.sort_fighters_by_initiative()
     fight_manager.display_fighters_order()
+
+    print(f'{fight_manager.find_first_character_of_team("Ennemis").nom}')

@@ -1,7 +1,7 @@
 """ tout ce qui a à voir avec l'import des combattants"""
 
 import json
-from fighters import Combattant
+from fighters import Fighter
 
 
 class CLIParser:
@@ -33,7 +33,7 @@ class FighterParser:
             donnees = json.load(file)
 
         for data in donnees:
-            fighter = Combattant(
+            fighter = Fighter(
                 nom=data.get("nom"),
                 equipe=data.get("equipe"),
                 points_vie=data.get("pv"),
