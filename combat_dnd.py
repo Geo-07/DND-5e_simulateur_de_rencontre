@@ -1,63 +1,5 @@
 #!/usr/bin/env python3
-"""
-Ce programme sert à :
-=====================
-    Ce programme sert à simuler une renconrte dans Donjons & Dragons 5e.
 
-
-@todo : Liste des choses à faire !!!
-====================================
-    # BUG : Sous l'IDE Spyder, j'ai une bonne gestion des caractères (encodage 
-        UTF-8 ?) mais pas ailleurs ...
-        
-    # @todo_Usage :
-        Remplir correctement la section 'Usage' ci-dessous dans la 
-        documentation de ce programme.
-
-    # @todo_Verbose_type :
-        Passer verbose en type 'int' avec : 
-            0 : pas de détail,
-            1 : détails minimalistes,
-            2 : un peu plus de détaile, 
-            etc. ...
-            
-    # @todo_Niveau_de_detail :
-        Si pas de détails sélectionné, passer le résultat en retour de la 
-        fonction combat() plutôt que d'en forcer l'impression dans la console.
-        
-    # @todo_Critique_a :
-        Gestion des coups critiques
-
-
-Usage: # @todo_Usage
-======
-    Commande à rentrer :
-        rencontre(fichier, verbose)
-
-        fichier : str
-            Nom du fichier 'combatants.json' contenant la liste des combatants
-        verbose : str ou boolean
-            Niveau de détail du retour console :
-                False : Aucun retour # @todo_Niveau_de_detail
-        
-        
-Created on : Sun Jan  1 10:04:20 2023
-============
-
-
-Versions :
-==========
-    v-0.1 : Appropriation d'un code généré par chat GPT qui m'a permis 
-            d'apprendre à programmer en python
-            
-    v-0.2 : Réalisation d'un premier programme fonctionnel permettant de 
-            simuler une rencontre.
-            
-    v-0.3 : EN COURS DE DÉVELOPPEMENT
-            Amélioration des commentaires
-            Inventaire des améliorations à apporter
-            
-"""
 # -*- coding: utf-8 -*- # BUG ???
 
 __authors__ = ("Geo-07")
@@ -70,42 +12,38 @@ __version__= "0.3"
 
 import dice
 import json
+     
 
-
-
-
-        
-
-# Fonction création de combatant    
+# Fonction crï¿½ation de combatant    
 def import_combatants(fichier, verbose): # @todo_Verbose_type
     """
-Cette fonction a pour rôle de lire un fichier JSON recensant les combatants et
-de créer un objet Combatant pour chacun d'entre-eux. Elle est capable de
-retourner la liste des combatants dans la console grâce au mode verbose.
+Cette fonction a pour role de lire un fichier JSON recensant les combatants et
+de crï¿½er un objet Combatant pour chacun d'entre-eux. Elle est capable de
+retourner la liste des combatants dans la console grï¿½ce au mode verbose.
 
     Parameters
     ----------
     fichier : Texte
         Nom du fichier au format JSON contenant le liste des combatant
-        si réglé à "default", prend "combatants.json" comme nom de fichier
+        si rï¿½glï¿½ ï¿½ "default", prend "combatants.json" comme nom de fichier
     verbose : Boolean (True or False)
-        Imprime dans la console la liste des combattants créés et leurs 
-        équipes respectives.
+        Imprime dans la console la liste des combattants crï¿½ï¿½s et leurs 
+        ï¿½quipes respectives.
 
     Returns
     -------
     Sortie : List
-        Retourne la liste des objets Combatants créés en sortie.
+        Retourne la liste des objets Combatants crï¿½ï¿½s en sortie.
 
     """
     combatants = []
     if fichier == "default":
         fichier = "combatants.json"
-        print(f"Le fichier par défaut est réglé sur {fichier}")
+        print(f"Le fichier par dï¿½faut est rï¿½glï¿½ sur {fichier}")
     elif not fichier:
         fichier = "combatants.json"
-        print("Le fichier n'a pas été renseigné !")
-        print(f"{fichier} a été utilisé par défaut")
+        print("Le fichier n'a pas ï¿½tï¿½ renseignï¿½ !")
+        print(f"{fichier} a ï¿½tï¿½ utilisï¿½ par dï¿½faut")
     with open(fichier, "r") as f:
         donnees = json.load(f)
     for d in donnees:
@@ -125,13 +63,13 @@ retourner la liste des combatants dans la console grâce au mode verbose.
         combatants.append(c)
     if verbose == True:
         for c in combatants:
-            print(f"{c.nom} de l'équipe {c.equipe} est prêt(e) au combat")
+            print(f"{c.nom} de l'ï¿½quipe {c.equipe} est prï¿½t(e) au combat")
     return combatants
 
 def calcul_initiative(liste,verbose):
     """
 Cette fonction calcule l'initiative pour chaque combatant de la liste en
-paramètre, puis les classe par ordre décroissant d'initiative pour leur
+paramï¿½tre, puis les classe par ordre dï¿½croissant d'initiative pour leur
 affecter leur rang de combatant.
 
     Parameters
@@ -144,7 +82,7 @@ affecter leur rang de combatant.
     Returns
     -------
     Sortie : List
-        Liste d'objets combatants_tries triés par rang d'initiative croissant
+        Liste d'objets combatants_tries triï¿½s par rang d'initiative croissant
 
     """
     for obj in liste:
@@ -160,34 +98,34 @@ affecter leur rang de combatant.
     if verbose  == True:
         for obj in combatants_tries:
             print(f"{obj.nom} : initiative {obj.initiative} rang\
- {obj.rang_initiative} équipe : {obj.equipe}")
+ {obj.rang_initiative} ï¿½quipe : {obj.equipe}")
     for combatant in combatants_tries:
         if combatant.equipe == "Aventuriers": #A reprendre !!!!!
             aventuriers_combatants.append(combatant)
         elif combatant.equipe == "Ennemis":
             ennemis_combatants.append(combatant)
         else:
-            print("1 -Les équipes sont mal définies ou les options choisies ne\
+            print("1 -Les ï¿½quipes sont mal dï¿½finies ou les options choisies ne\
  sont pas prises en charge") 
     return (combatants_tries, ennemis_combatants, aventuriers_combatants)
 
 
 def attaque(attaquant, defenseur, verbose):
     """
-    Cette fonction permet de gérer les attaques en combat et de mettre à jour
-    les objets relatifs au défenseur si ce dernier encaisse des dégâts.
-    Si un combatant est tué, on met également à jour les listes :
-        ko (en l'intégrant dedans)
-        ennemis_combatants ou aventuriers_combatants (en l'enlevant de là)
+    Cette fonction permet de gï¿½rer les attaques en combat et de mettre ï¿½ jour
+    les objets relatifs au dï¿½fenseur si ce dernier encaisse des dï¿½gï¿½ts.
+    Si un combatant est tuï¿½, on met ï¿½galement ï¿½ jour les listes :
+        ko (en l'intï¿½grant dedans)
+        ennemis_combatants ou aventuriers_combatants (en l'enlevant de lï¿½)
 
     Parameters
     ----------
     attaquant : Objet
         Objet attaquant.
     defenseur : Objet
-        Objet défenseur.
+        Objet dï¿½fenseur.
     verbose : Boolean
-        Veut-on un retour écrit dans la console des évènements ?
+        Veut-on un retour ï¿½crit dans la console des ï¿½vï¿½nements ?
 
     Returns
     -------
@@ -205,8 +143,8 @@ def attaque(attaquant, defenseur, verbose):
         defenseur.pv = defenseur.pv - degats
         defenseur.touche = True
         if verbose == True:
-            print(f"{attaquant.nom} inflige {degats} points de dégats \
-à {defenseur.nom} à qui il reste {defenseur.pv} PV")
+            print(f"{attaquant.nom} inflige {degats} points de dï¿½gats \
+ï¿½ {defenseur.nom} ï¿½ qui il reste {defenseur.pv} PV")
     else:
         if verbose == True:
             print(f"{attaquant.nom} rate son attaque contre {defenseur.nom}")
@@ -224,24 +162,24 @@ def attaque(attaquant, defenseur, verbose):
 
 def sauvegarde_contre_la_mort(ko, verbose):
     """
-    Un combattant KO doit faire à chaque tour des jets de sauvegarde contre la
-    mort pour déterminer les conséquences de ses blessures. Il lance 1d20 et
-    s'il fait 10 ou +, il réussit son jet de sauvegarde, s'il fait moins de 10,
-    il le rate. À la première des deux conditions remplies (3 succès ou 3 
-    échecs), il est soit stabilisé (il reste à 0 PV et ne combat pas, mais ses
+    Un combattant KO doit faire ï¿½ chaque tour des jets de sauvegarde contre la
+    mort pour dï¿½terminer les consï¿½quences de ses blessures. Il lance 1d20 et
+    s'il fait 10 ou +, il rï¿½ussit son jet de sauvegarde, s'il fait moins de 10,
+    il le rate. ï¿½ la premiï¿½re des deux conditions remplies (3 succï¿½s ou 3 
+    ï¿½checs), il est soit stabilisï¿½ (il reste ï¿½ 0 PV et ne combat pas, mais ses
     blessures ne menacent plus sa vie) soit il meurt de ses blessures.
                                     
         Pour chaque objet 'victime' dans la liste 'ko', on lance 1d20
-            Sur un résultat inférieur à 10, on incrémente l'attribut 'jdsmort'
+            Sur un rï¿½sultat infï¿½rieur ï¿½ 10, on incrï¿½mente l'attribut 'jdsmort'
             de l'objet 'victime'.
                 Dans ce cas, on teste si l'attribut 'jdsmort' de l'objet
-                'vicime' vaut 3 (ou plus, même si c'est inutile ...). Si cette
+                'vicime' vaut 3 (ou plus, mï¿½me si c'est inutile ...). Si cette
                 condition est remplie, on retire l'objet 'victime' de la liste
                 'ko' et on le met dans la liste 'morts'.
-            Sur un 10 ou plus, on incrémente l'attribut 'jdsvie' de l'objet
+            Sur un 10 ou plus, on incrï¿½mente l'attribut 'jdsvie' de l'objet
             'victime'.
                 Dans ce cas, on teste si l'attribut 'jdsvie' de l'objet
-                'vicime' vaut 3 (ou plus, même si c'est inutile ...). Si cette
+                'vicime' vaut 3 (ou plus, mï¿½me si c'est inutile ...). Si cette
                 condition est remplie, on retire l'objet 'victime' de la liste
                 'ko' et on le met dans la liste 'stabilises'.
             
@@ -250,12 +188,12 @@ def sauvegarde_contre_la_mort(ko, verbose):
     ----------
     ko : list
         Liste des objets 'victimes' contenant les combattants dont les 'pv' ont
-        étés réduits à 0.
+        ï¿½tï¿½s rï¿½duits ï¿½ 0.
     verbose : boolean ou str
-        Décrit le niveau de détail des retours imprimés dans la console :
+        Dï¿½crit le niveau de dï¿½tail des retours imprimï¿½s dans la console :
             - False (boolean) = Aucun retour
-            - "minimal" (str) = Retour limité à l'essentiel
-            - True (boolean) = Retour ultra détaillé
+            - "minimal" (str) = Retour limitï¿½ ï¿½ l'essentiel
+            - True (boolean) = Retour ultra dï¿½taillï¿½
 
     Returns
     -------
@@ -275,42 +213,42 @@ def sauvegarde_contre_la_mort(ko, verbose):
                 ko.remove(victime)
 
 
-# DÉFINITION DE LA FONCTION 'combat'
+# Dï¿½FINITION DE LA FONCTION 'combat'
 def combat(initiative, verbose):
     """
-    Cette fonction qui effectue le combat en lui-même va permettre de gérer les
+    Cette fonction qui effectue le combat en lui-mï¿½me va permettre de gï¿½rer les
     atttaques faites avec la fonction 'attaque' durant une rencontre.
     
-    Voici les étapes effectuées dans l'ordre :
-        1- Initialisation des variables 'equipe_gagnante' et 'tours' à 0
-        2- Tant qu'il n'y a pas d'équipe gagnante :
-            a) On imprime dans la console le numéro du tour actuel si 'verbose'
+    Voici les ï¿½tapes effectuï¿½es dans l'ordre :
+        1- Initialisation des variables 'equipe_gagnante' et 'tours' ï¿½ 0
+        2- Tant qu'il n'y a pas d'ï¿½quipe gagnante :
+            a) On imprime dans la console le numï¿½ro du tour actuel si 'verbose'
             le permet.
             b) Pour chaque attaquant dans l'ordre d'initiative :
-                1- On crée la variable 'equipe_defenseur' qui prend la valeur
-                opposée à celle de l'équipe de l'attaquant.
-                2- Pour un nombre d'attaques corespondant à celui de 
-                l'attaquant, s'il reste au moins un défenseur, on utilise la 
-                fonction 'attaque' pour calculer le résultat de l'attaque de 
-                l'attaquant sur la première occurence de la liste 
+                1- On crï¿½e la variable 'equipe_defenseur' qui prend la valeur
+                opposï¿½e ï¿½ celle de l'ï¿½quipe de l'attaquant.
+                2- Pour un nombre d'attaques corespondant ï¿½ celui de 
+                l'attaquant, s'il reste au moins un dï¿½fenseur, on utilise la 
+                fonction 'attaque' pour calculer le rï¿½sultat de l'attaque de 
+                l'attaquant sur la premiï¿½re occurence de la liste 
                 'equipe_defenseur'.
-            c) On détermine l'équipe gagnante et on l'indique dans la variable 
+            c) On dï¿½termine l'ï¿½quipe gagnante et on l'indique dans la variable 
             'equipe_gagnante'.
             d) On effectue les jets de sauvegarde contre la mort des combatants
-            KO grâce à la fonction 'sauvegarde_contre_la_mort'
-        3- On imprime le résultat du combat dans la console
+            KO grï¿½ce ï¿½ la fonction 'sauvegarde_contre_la_mort'
+        3- On imprime le rï¿½sultat du combat dans la console
 
     Parameters
     ----------
     initiative : list
-        Liste des combatants classés par ordre d'initiative.
+        Liste des combatants classï¿½s par ordre d'initiative.
     verbose : boolean ou str
-        Niveau de détail du retour imprimé dans la console.
+        Niveau de dï¿½tail du retour imprimï¿½ dans la console.
 
     Returns
     -------
     equipe_gagnante : str
-        Renvoie l'équipe gagnante sous forme de chaine de caractères
+        Renvoie l'ï¿½quipe gagnante sous forme de chaine de caractï¿½res
 
     """
     equipe_gagnante = 0
@@ -320,13 +258,13 @@ def combat(initiative, verbose):
         if verbose == True:
             print(f"Tour {tours}")
         for attaquant in initiative: #Objet attaquant selon rang d'initiative
-            #On détermine l'équipe du défenseur
+            #On dï¿½termine l'ï¿½quipe du dï¿½fenseur
             if attaquant.equipe == "Aventuriers": #A reprendre !!!!!
                 equipe_defenseur = ennemis_combatants
             elif attaquant.equipe == "Ennemis":
                 equipe_defenseur = aventuriers_combatants
             else:
-                print("2 -Les équipes sont mal définies ou les options\
+                print("2 -Les ï¿½quipes sont mal dï¿½finies ou les options\
 choisies ne sont pas prises en charge")
             for i in range(attaquant.nombre_attaques):
                 if len(equipe_defenseur) > 0:
@@ -339,45 +277,45 @@ choisies ne sont pas prises en charge")
         sauvegarde_contre_la_mort(ko, verbose)
     # @todo_Niveau_de_detail
     if verbose == "minimal":
-        print(f"Les {equipe_gagnante} ont gagné le combat en {tours} tours")
+        print(f"Les {equipe_gagnante} ont gagnï¿½ le combat en {tours} tours")
     return(equipe_gagnante)
 
 
-# DÉFINITION DE LA FONCTION 'rencontre'            
+# Dï¿½FINITION DE LA FONCTION 'rencontre'            
 def rencontre(fichier, verbose):
     """
     C'est la fonction centrale du programme qui va articuler les appels aux 
-    différentes fonctions qui le constituent !
+    diffï¿½rentes fonctions qui le constituent !
     
-    Voici les étapes effectuées dans l'ordre :
-        1- Déclaration des variables globales du programme :
+    Voici les ï¿½tapes effectuï¿½es dans l'ordre :
+        1- Dï¿½claration des variables globales du programme :
             combatants (list) : liste des combatants
-            initiative (list) : liste des combatants classés par initiative
-        2- Création de la liste des combatants :
-            Les combatants sont importés depuis le 'fichier' dans la liste 
-            'combatants' grâce à la fonction 'import_combatants'.
+            initiative (list) : liste des combatants classï¿½s par initiative
+        2- Crï¿½ation de la liste des combatants :
+            Les combatants sont importï¿½s depuis le 'fichier' dans la liste 
+            'combatants' grï¿½ce ï¿½ la fonction 'import_combatants'.
         3- Calcul de l'ordre d'initiative :
-            L'initiative des combatants de la liste 'combatants' est calculée 
-            et ils sont rangés dans la liste 'initiative' par ordre 
-            d'initiative décroissant grâce à la fonction 'calcul_initiative'. 
-            On crée également deux listes 'ennemis_combatants' et 
+            L'initiative des combatants de la liste 'combatants' est calculï¿½e 
+            et ils sont rangï¿½s dans la liste 'initiative' par ordre 
+            d'initiative dï¿½croissant grï¿½ce ï¿½ la fonction 'calcul_initiative'. 
+            On crï¿½e ï¿½galement deux listes 'ennemis_combatants' et 
             'aventuriers_combatants' contenant les combatants des groupes
-            respectifs aventuriers ou ennemis classés par initiative 
-            décroissante.
+            respectifs aventuriers ou ennemis classï¿½s par initiative 
+            dï¿½croissante.
         4- Combat :
-            On utilise la fonction 'combat' pour déterminer l'issue de la 
+            On utilise la fonction 'combat' pour dï¿½terminer l'issue de la 
             rencontre.
-        5- Retour console du résultat :
-            On met à jour les variables 'nombre_ko', 'nombre_morts' et 
+        5- Retour console du rï¿½sultat :
+            On met ï¿½ jour les variables 'nombre_ko', 'nombre_morts' et 
             'nombre_stabilises' et selon la valeur de 'verbose', on imprime
-            dans la console les détails du combat.
+            dans la console les dï¿½tails du combat.
         
     Parameters
     ----------
     fichier : str
-        Nom du fichier JSON décrivant les combatants.
+        Nom du fichier JSON dï¿½crivant les combatants.
     verbose : boolean ou str
-        niveau de détail du retour dans la console.
+        niveau de dï¿½tail du retour dans la console.
 
     Returns
     -------
@@ -404,18 +342,18 @@ def rencontre(fichier, verbose):
             for combatants_morts in morts:
                 print(combatants_morts.nom)
         if nombre_stabilises > 0:
-            print(f"Il y a {nombre_stabilises} combatant(s) stabilisés ! \
+            print(f"Il y a {nombre_stabilises} combatant(s) stabilisï¿½s ! \
 La liste est :")
             for combatants_stabilises in stabilises:
                 print(combatants_stabilises.nom)
     return(equipe_gagnante)
 
 
-# DÉFINITION DE L'OBJET : 'Combatant'
+# Dï¿½FINITION DE L'OBJET : 'Combatant'
 class Combatant:
-    """Cette classe crée un combattant avec tous ses attributs.
-    Elle gère l'attaque et la défense de chaque combattant et enregistre son 
-    état actuel (pv ko, jds contre la mort, stabilisé et mort).
+    """Cette classe crï¿½e un combattant avec tous ses attributs.
+    Elle gï¿½re l'attaque et la dï¿½fense de chaque combattant et enregistre son 
+    ï¿½tat actuel (pv ko, jds contre la mort, stabilisï¿½ et mort).
     
     A class to represent a person.
 
@@ -427,13 +365,13 @@ class Combatant:
         Le nom de cet objet 'combattant'.
         
     equipe : str
-        L'équipe de cet objet 'combattant'.
+        L'ï¿½quipe de cet objet 'combattant'.
         
     pv : int
         Les points de vie restants de cet objet 'combattant'.
         
     deja_touche : boolean
-        Cet objet 'combattant' a-t-il déjà ete touché par une attaque ?
+        Cet objet 'combattant' a-t-il dï¿½jï¿½ ete touchï¿½ par une attaque ?
         
     actif : boolean
         Cet objet 'combattant' est-il toujours actif
@@ -442,14 +380,14 @@ class Combatant:
         Cet objet 'combattant' est-il ko ?
         
     stabilise : boolean
-        Cet objet 'combattant' est-il stabilisé ?
+        Cet objet 'combattant' est-il stabilisï¿½ ?
         
     jdsvie : int
-        Le nombre de jets de sauvegarde contre la mort réussis de cet objet
+        Le nombre de jets de sauvegarde contre la mort rï¿½ussis de cet objet
         'combattant'.
         
     jdsmort : int
-        Le nombre de jets de sauvegarde contre la mort échoués de cet objet
+        Le nombre de jets de sauvegarde contre la mort ï¿½chouï¿½s de cet objet
         'combattant'.
         
     mort : boolean
@@ -474,7 +412,7 @@ class Combatant:
         Le bonus pour toucher de cet objet 'combattant'.
         
     des_pour_toucher : str
-        Le(s) dé(s) à lancer pour touchar par cet objet 'combattant' (mais
+        Le(s) dï¿½(s) ï¿½ lancer pour touchar par cet objet 'combattant' (mais
         c'est toujours '1d20' en fait ...')
         
     critique_a : int
@@ -482,13 +420,13 @@ class Combatant:
         critique.
         
     bonus_degats : int
-        Bonus de dégâts de cet objet 'combattant'.
+        Bonus de dï¿½gï¿½ts de cet objet 'combattant'.
         
     nombre_des_degats : int
-        Nombre de dés de dégat de cet objet 'combattant'.
+        Nombre de dï¿½s de dï¿½gat de cet objet 'combattant'.
         
     valeur_des_degats :
-        Type de dés de dégats de cet objet 'combattant'.
+        Type de dï¿½s de dï¿½gats de cet objet 'combattant'.
 
     Methods
     -------
@@ -498,7 +436,7 @@ class Combatant:
     
     def __init__(self):
         """
-        On initialise les attributs par défaut des objets
+        On initialise les attributs par dï¿½faut des objets
                              
         """
         self.nom = "Joli petit nom"
@@ -543,5 +481,5 @@ print (f"{equipe_gagnante} gagne")
 #     if equipe_gagnante == "Aventuriers":
 #         victoires_aventuriers += 1
 # taux_reussite = victoires_aventuriers * 100 / itterations
-# print(f"Le taux de réussite des aventuriers est de {taux_reussite} %.")
+# print(f"Le taux de rï¿½ussite des aventuriers est de {taux_reussite} %.")
     
