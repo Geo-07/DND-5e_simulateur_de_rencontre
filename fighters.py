@@ -32,7 +32,7 @@ class Combattant:
         self.nom = nom
         self.equipe = equipe
         self.points_vie = points_vie
-        self.bonus_initiaitive = bonus_initiative
+        self.bonus_initiative = bonus_initiative
         self.classe_armure = classe_armure
         self.nombre_attaques = nombre_attaques
         self.pour_toucher = pour_toucher
@@ -67,3 +67,6 @@ class Combattant:
             self.status = Status.DEAD
         if self.jdsvie >= 3:
             self.status = Status.STABLE
+
+    def calculate_initiative(self):
+        self.initiative = dice.roll("1d20t") + self.bonus_initiative
