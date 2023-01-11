@@ -18,15 +18,15 @@ Created on : Sun Jan  1 10:04:20 2023
 
 Versions :
 ==========
-    v-0.1 : Appropriation d'un code g�n�r� par chat GPT qui m'a permis 
-            d'apprendre � programmer en python
+    v-0.1 : Appropriation d'un code généré par chat GPT qui m'a permis 
+            d'apprendre à programmer en python
             
-    v-0.2 : R�alisation d'un premier programme fonctionnel permettant de 
+    v-0.2 : Réalisation d'un premier programme fonctionnel permettant de 
             simuler une rencontre.
             
-    v-0.3 : EN COURS DE D�VELOPPEMENT
-            Am�lioration des commentaires
-            Inventaire des am�liorations � apporter
+    v-0.3 : EN COURS DE DÉVELOPPEMENT
+            Amélioration des commentaires
+            Inventaire des améliorations à apporter
 
 
 ## le simulateur
@@ -35,48 +35,34 @@ Ce projet a pour but de créer un simulateur de rencontres pour DND 5e.
 
 ## comment l'installer
 
-- cloner le dépôt
+- cloner le dépôt ```git clone [repo address]```
 - créer un environnement virtuel: ``` python -m venv env ```
 - activer l'environnement tout juste créé: ```source env/bin/activate # différent si sous windows```
-- installer les dépendances ``` pip install -r requirements.txt```
+- installer les dépendances ```pip install -r requirements.txt```
 
 ## comment l'utiliser
 
-```secret: j'ai aucune idée de comment c'est sensé fonctionner, donc j'ai laissé ta doc telle quelle```
+dans le fichier main.py, configurer l'exécution dans la zone en bas, en utilisant une des deux fonctions au-dessus (ou en en créant une autre)
 
-```python
-rencontre(fichier, verbose)
-```
-
-arguments:
-- fichier : str
-    Nom du fichier 'combatants.json' contenant la liste des combatants
-- verbose : str ou boolean
-    Niveau de d�tail du retour console :
-        False : Aucun retour # @todo_Niveau_de_detail
+ensuite, depuis le terminal, lancer ```python main.py```
 
 ## A faire
-- BUG : Sous l'IDE Spyder, j'ai une bonne gestion des caract�res (encodage 
-    UTF-8 ?) mais pas ailleurs ...
-    
-- Usage :
-    *Remplir correctement la section 'Usage' ci-dessous dans la 
-    documentation de ce programme.
 
 - verbosité :
     * Passer verbose en type 'int' avec : 
-        + 0 : pas de d�tail,
-        + 1 : d�tails minimalistes,
-        + 2 : un peu plus de d�taile, 
+        + 0 : pas de détail,
+        + 1 : détails minimalistes,
+        + 2 : un peu plus de détails, 
         + etc. ...
-- niveau_de_detail :
-    Si pas de d�tails s�lectionn�, passer le r�sultat en retour de la 
-    fonction combat() plut�t que d'en forcer l'impression dans la console.
+
+- niveau_de_detail cf verbosité :
+    Si pas de détails sélectionnés, passer le résultat en retour de la 
+    fonction combat() plutôt que d'en forcer l'impression dans la console.
     
 - Critique :
     * Gestion des coups critiques
 
+- Suppression des noms d'équipes en str, 
+    * remplacer par un type énuméré un peu partout
 
-
-
-            
+- ajout de fonctionnalités pour lancer le script depuis la CLI (utiilsation de la lib argparse, probablement)
