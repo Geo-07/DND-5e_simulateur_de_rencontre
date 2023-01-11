@@ -3,37 +3,39 @@ from fighters import Status
 from fight import Fight
 
 
-def one_simulation(verbosity):
+def one_simulation(filename="combatants.json", verbosity=1):
     # on lit le fichier json des combattants
-    fighter_parser = FighterParser(filename="combatants.json", verbosity=1)
+    fighter_parser = FighterParser(filename=filename, verbosity=verbosity)
     fighter_parser.read_fighters_from_file()
     fighters = fighter_parser.fighters
 
     # on crée l'objet de combat, et on l'initialise
-    fight_manager = Fight(fighters, verbosity=1)
-    fight_manager.sort_fighters_by_initiative(verbosity=1)
+    fight_manager = Fight(fighters, verbosity=verbosity)
+    fight_manager.sort_fighters_by_initiative(verbosity=verbosity)
     # et on lance le combat
     fight_manager.launch_fight()
 
 
-def n_simulations(n: int):
+def n_simulations(n: int, filename="combatants.json", verbosity=0):
     """effectue un certain nombre de simulations et affiche les statistiques de résultats
 
     Args:
         n (int): nombre de simulations
+        filename (str): fichier où obtenir les informations sur les combattants
+        verbosity (int): niveau de détail rendus dans la CLI
     """
     adventurers_win = 0
     ennemies_win = 0
     for i in range(n):
         # on recopie la liste, au lieu de la passer en référence.
         # ça permet de garder la liste du parser intacte pour les simulations suivantes
-        fighter_parser = FighterParser(filename="combatants.json", verbosity=0)
+        fighter_parser = FighterParser(filename=filename, verbosity=verbosity)
         fighter_parser.read_fighters_from_file()
         fighters = fighter_parser.fighters
 
         # on crée l'objet de combat, et on l'initialise
-        fight_manager = Fight(fighters, verbosity=0)
-        fight_manager.sort_fighters_by_initiative(verbosity=0)
+        fight_manager = Fight(fighters, verbosity=verbosity)
+        fight_manager.sort_fighters_by_initiative(verbosity=verbosity)
 
         # et on le lance
         winner = fight_manager.launch_fight()
