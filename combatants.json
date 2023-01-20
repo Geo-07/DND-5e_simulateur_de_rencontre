@@ -1,5 +1,5 @@
 [{
-"nom": "Karric 1",
+"nom": "Karric ",
 "equipe": "Aventuriers",
 "pv": 37,
 "bonus_initiative": 4,
@@ -13,7 +13,7 @@
 "valeur_des_degats": 8
 },
 {
-"nom": "Karric 2",
+"nom": "Balek",
 "equipe": "Aventuriers",
 "pv": 37,
 "bonus_initiative": 4,
@@ -27,7 +27,7 @@
 "valeur_des_degats": 8
 },
 {
-"nom": "Karric 3",
+"nom": "Gerbos",
 "equipe": "Aventuriers",
 "pv": 37,
 "bonus_initiative": 4,
@@ -41,7 +41,7 @@
 "valeur_des_degats": 8
 },
 {
-"nom": "Karric 4",
+"nom": "Morback",
 "equipe": "Aventuriers",
 "pv": 37,
 "bonus_initiative": 4,
@@ -55,7 +55,7 @@
 "valeur_des_degats": 8
 },
 {
-"nom": "Nissa 1",
+"nom": "Zeph",
 "equipe": "Aventuriers",
 "pv": 32,
 "bonus_initiative": 3,
@@ -69,7 +69,7 @@
 "valeur_des_degats": 8
 },
 {
-"nom": "Nissa 2",
+"nom": "Danyx",
 "equipe": "Aventuriers",
 "pv": 32,
 "bonus_initiative": 3,
@@ -83,7 +83,7 @@
 "valeur_des_degats": 8
 },
 {
-"nom": "Nissa 3",
+"nom": "Pouchielle",
 "equipe": "Aventuriers",
 "pv": 32,
 "bonus_initiative": 3,
@@ -97,7 +97,21 @@
 "valeur_des_degats": 8
 },
 {
-"nom": "Nissa 4",
+"nom": "Bolomir",
+"equipe": "Aventuriers",
+"pv": 32,
+"bonus_initiative": 3,
+"ca": 17,
+"nombre_attaques": 2,
+"pour_toucher": 7,
+"des_pour_toucher": "1d20t",
+"critique_a": 20,
+"bonus_degats": 3,
+"nombre_des_degats": 1,
+"valeur_des_degats": 8
+},
+  {
+"nom": "Nissa",
 "equipe": "Aventuriers",
 "pv": 32,
 "bonus_initiative": 3,
